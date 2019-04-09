@@ -1,0 +1,59 @@
+apply plugin: 'com.android.library'
+//apply from: 'bintrayUpload.gradle'
+//  ./gradlew clean build bintrayUpload -PbintrayUser=lleonyr -PbintrayKey=6313be3575e7efefc75aafe6cea597c9337984f6
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion "26.0.3"
+
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dependencies {
+    compile 'com.android.support:appcompat-v7:26.1.0'
+}
+
+ext {
+    libraryPackaging = 'aar'                                            //上传aar形式的打包文件
+
+    // jcenter
+    bintrayRepo = "library"                                             // 你上传的位于bintray中的Repository名称，如果没有创建会有一个叫maven的
+    name = 'EaseyUtils'                                                // 必须和library module的名字相同
+    libraryDesc = '工具类整理'
+    publishedGroupId = 'com.leonyr'                // 填写groupId， 一般是包名，比如：com.android.support
+    versionName = '0.0.2'                                               // 版本号，比如：22.2.1
+    websiteUrl = 'https://github.com/LLeonyR/EaseyUtils'              // 可以填写github上的库地址.
+    issueTrackerUrl = 'https://github.com/LLeonyR/EaseyUtils.git'  // 可以填写github库的issue地址.
+    vcsUrl = 'https://github.com/LLeonyR/EaseyUtils.git'              // 可以填写github上库的地址.
+    licenseName = "Apache-2.0"
+    libraryVersionDesc = '测试提交'
+
+    // maven
+    artifact = 'EaseyUtils'                                            // 必须和library module的名字相同
+    libraryName = 'EaseyUtils'
+    developerId = 'lleonyr'
+    developerName = 'LeonyR'
+    developerEmail = 'LeonyR@126.com'
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+
+}
+//apply from: 'android-maven-install.gradle'
+//apply from: 'android-tasks.gradle'
+//apply from: 'bintray.gradle'
+apply from: 'jcenter.gradle'
