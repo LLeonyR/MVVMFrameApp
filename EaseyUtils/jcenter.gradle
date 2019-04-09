@@ -1,5 +1,6 @@
 /**
  * maven 插件相关
+ * https://www.jianshu.com/p/54e0107a2696
  */
 apply plugin: 'com.github.dcendents.android-maven'
 
