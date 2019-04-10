@@ -35,8 +35,8 @@ import javax.security.auth.x500.X500Principal;
  * Description: APP工具类
  * APP相关信息工具类。获取版本信息
  * <p>
- * Created by 01385127 on 2019.04.09
- * (C) Copyright sf_Express Corporation 2014 All Rights Reserved.
+ * Created by leonyr on 2019.04.09
+ * (C) Copyright LeonyR Corporation 2014 All Rights Reserved.
  * ==============================================================
  */
 public final class ApkUtil {
@@ -89,7 +89,7 @@ public final class ApkUtil {
      * @param context 上下文
      * @return 当前版本信息
      */
-    public static String getVerName(Context context) {
+    public static String getVersionName(Context context) {
         String verName = "";
         try {
             String packageName = context.getPackageName();
@@ -101,14 +101,12 @@ public final class ApkUtil {
         return verName;
     }
 
-
     /**
      * 安装apk
      * Android 7.0 或更高版本的应用私有目录被限制访问
-     *
-     * param context 上下文
-     * param file    APK文件
-     * paras authority provider authority属性
+     * @param context 上下文
+     * @param file APK文件
+     * @param authority provider authority属性
      */
     public void installApk(Context context, File file, String authority) {
         Intent intent = new Intent();
@@ -372,9 +370,6 @@ public final class ApkUtil {
                     }
                 }
             }
-        }
-        if (DEBUG) {
-
         }
         return count;
     }

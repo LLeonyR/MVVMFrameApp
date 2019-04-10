@@ -41,7 +41,7 @@ ext {
     issueTrackerUrl = 'https://github.com/LLeonyR/EaseyUtils.git'  // 可以填写github库的issue地址.
     vcsUrl = 'https://github.com/LLeonyR/EaseyUtils.git'              // 可以填写github上库的地址.
     licenseName = "Apache-2.0"
-    libraryVersionDesc = '测试提交'
+    libraryVersionDesc = 'tools class '
 
     // maven
     artifact = 'EaseyUtils'                                            // 必须和library module的名字相同

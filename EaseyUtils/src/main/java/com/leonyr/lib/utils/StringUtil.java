@@ -229,7 +229,7 @@ public class StringUtil {
             try {
                 return content.getBytes(charsetName);
             } catch (Exception var3) {
-                Log.e("StringUtil", "string2Bytes" + var3);
+                LogUtil.e("StringUtil", "string2Bytes" + var3);
                 return new byte[]{};
             }
         }
@@ -265,7 +265,7 @@ public class StringUtil {
                 return false;
             }
         } catch (Exception ex) {
-            Log.e("StringUtil", "isRfidTag", ex);
+            LogUtil.e("StringUtil", "isRfidTag: " + ex.getMessage());
             return false;
         }
     }
