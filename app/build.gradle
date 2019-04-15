@@ -1,15 +1,15 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion "26.0.3"
+    compileSdkVersion rootProject.ext.android.compileVersion
+    buildToolsVersion rootProject.ext.android.buildVersion
 
     defaultConfig {
         applicationId "com.leonyr.easyutils"
-        minSdkVersion 15
-        targetSdkVersion 26
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion rootProject.ext.android.minVersion
+        targetSdkVersion rootProject.ext.android.targetVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -25,7 +25,17 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:26.1.0'
-    compile project(":EaseyUtils")
-//    compile 'com.leonyr:EaseyUtils:0.0.2'
+    implementation rootProject.ext.dependencies["appcompat-v7"]
+    implementation rootProject.ext.dependencies["design"]
+    implementation rootProject.ext.dependencies["recyclerview-v7"]
+
+//    implementation rootProject.ext.thirdLib["retrofit"]
+//    implementation rootProject.ext.thirdLib["rxandroid"]
+//    implementation rootProject.ext.thirdLib["okhttp"]
+//    implementation rootProject.ext.thirdLib["okio"]
+//    implementation(rootProject.ext.thirdLib["glide"]) {
+//        exclude group: "com.android.support"
+//    }
+//    compile project(":EaseyUtils")
+    implementation 'com.leonyr:EaseyUtils:0.0.4'
 }

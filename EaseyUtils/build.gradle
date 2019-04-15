@@ -1,16 +1,17 @@
 apply plugin: 'com.android.library'
+
 //apply from: 'bintrayUpload.gradle'
 //  ./gradlew clean build bintrayUpload -PbintrayUser=lleonyr -PbintrayKey=313be3575e7efefc75aafe6cea597c9337984f
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion "26.0.3"
+    compileSdkVersion rootProject.ext.android.compileVersion
+    buildToolsVersion rootProject.ext.android.buildVersion
 
     defaultConfig {
-        minSdkVersion 15
-        targetSdkVersion 26
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion rootProject.ext.android.minVersion
+        targetSdkVersion rootProject.ext.android.targetVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
     }
 
     buildTypes {
@@ -25,8 +26,9 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:26.1.0'
-    compile 'com.android.support:design:26.1.0'
+    implementation rootProject.ext.dependencies["appcompat-v7"]
+    implementation rootProject.ext.dependencies["design"]
+    implementation rootProject.ext.dependencies["recyclerview-v7"]
 }
 
 ext {
