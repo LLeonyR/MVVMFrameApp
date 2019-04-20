@@ -1,4 +1,4 @@
-package com.leonyr.easyutils;
+package com.leonyr.mvvmframe;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

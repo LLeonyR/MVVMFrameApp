@@ -14,6 +14,10 @@ android {
         versionName rootProject.ext.android.versionName
     }
 
+    dataBinding {
+        enabled = true
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -29,6 +33,21 @@ dependencies {
     implementation rootProject.ext.dependencies["appcompat-v7"]
     implementation rootProject.ext.dependencies["design"]
     implementation rootProject.ext.dependencies["recyclerview-v7"]
+
+    compile rootProject.ext.dependencies["lifecycle-runtime"]
+    compile rootProject.ext.dependencies["lifecycle-extensions"]
+    annotationProcessor rootProject.ext.dependencies["lifecycle-compiler"]
+
+    compile rootProject.ext.thirdLib["retrofit"]
+    compile rootProject.ext.thirdLib["rxandroid"]
+    compile rootProject.ext.thirdLib["okhttp"]
+
+    compile(rootProject.ext.thirdLib["glide"]){
+        exclude group: "com.android.support"
+    }
+    annotationProcessor rootProject.ext.thirdLib["glideCompiler"]
+
+    implementation rootProject.ext.leonyr["utils"]
 }
 
 ext {

@@ -5,7 +5,7 @@ android {
     buildToolsVersion rootProject.ext.android.buildVersion
 
     defaultConfig {
-        applicationId "com.leonyr.easyutils"
+        applicationId "com.leonyr.mvvmframe"
         minSdkVersion rootProject.ext.android.minVersion
         targetSdkVersion rootProject.ext.android.targetVersion
         versionCode rootProject.ext.android.versionCode
@@ -36,6 +36,5 @@ dependencies {
 //    implementation(rootProject.ext.thirdLib["glide"]) {
 //        exclude group: "com.android.support"
 //    }
-//    compile project(":EaseyUtils")
-    implementation 'com.leonyr:EaseyUtils:0.0.4'
+    compile project(":MVVMFrame")
 }

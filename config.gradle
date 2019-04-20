@@ -8,10 +8,16 @@ ext {
             versionCode   : 1,
             versionName   : "1.0.0"
     ]
+    leonyr = [
+            "utils": "com.leonyr:EaseyUtils:0.0.4"
+    ]
     dependencies = [
-            "appcompat-v7"   : "com.android.support:appcompat-v7:$android.SDKVersion",
-            "design"         : "com.android.support:design:$android.SDKVersion",
-            "recyclerview-v7": "com.android.support:recyclerview-v7:$android.SDKVersion"
+            "appcompat-v7"        : "com.android.support:appcompat-v7:$android.SDKVersion",
+            "design"              : "com.android.support:design:$android.SDKVersion",
+            "recyclerview-v7"     : "com.android.support:recyclerview-v7:$android.SDKVersion",
+            "lifecycle-runtime"   : "android.arch.lifecycle:runtime:1.1.1",
+            "lifecycle-extensions": "android.arch.lifecycle:extensions:1.1.1",
+            "lifecycle-compiler"  : "android.arch.lifecycle:compiler:1.1.1"
     ]
     thirdLib = [
             "retrofit"     : "com.squareup.retrofit2:retrofit:2.5.0",

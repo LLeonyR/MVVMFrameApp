@@ -1,1 +1,1 @@
-include ':app', ':EaseyUtils'
+include ':app', ':MVVMFrame'
