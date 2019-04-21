@@ -32,7 +32,9 @@ android {
 dependencies {
     implementation rootProject.ext.dependencies["appcompat-v7"]
     implementation rootProject.ext.dependencies["design"]
+
     implementation rootProject.ext.dependencies["recyclerview-v7"]
+    compile rootProject.ext.thirdLib["multitype"]
 
     compile rootProject.ext.dependencies["lifecycle-runtime"]
     compile rootProject.ext.dependencies["lifecycle-extensions"]
