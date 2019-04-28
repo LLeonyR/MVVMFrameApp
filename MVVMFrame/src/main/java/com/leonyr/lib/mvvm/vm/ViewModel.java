@@ -21,6 +21,7 @@ public class ViewModel extends android.arch.lifecycle.ViewModel {
     }
 
     protected Context getContext(){
+
         if (null == mCtx || null == mCtx.get()){
             throw new NullPointerException("You must set constructor at first !");
         }

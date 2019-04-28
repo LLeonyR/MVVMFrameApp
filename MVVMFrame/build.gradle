@@ -49,7 +49,7 @@ dependencies {
     }
     annotationProcessor rootProject.ext.thirdLib["glideCompiler"]
 
-    implementation rootProject.ext.leonyr["utils"]
+    compile rootProject.ext.leonyr["utils"]
 }
 
 ext {
