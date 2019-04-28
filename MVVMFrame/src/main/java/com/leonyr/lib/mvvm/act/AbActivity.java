@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.Window;
 
+import com.leonyr.lib.mvvm.vm.LViewModel;
+
 /**
  * ==============================================================
  * Description: activity 基类
@@ -15,11 +17,12 @@ import android.view.Window;
  * (C) Copyright LeonyR Corporation 2014 All Rights Reserved.
  * ==============================================================
  */
-public abstract class AbActivity extends AppCompatActivity {
+public abstract class AbActivity<VM extends LViewModel> extends AppCompatActivity {
 
     protected String TAG;
     protected Context mCtx;
     private View rootView;
+    private VM VModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +45,17 @@ public abstract class AbActivity extends AppCompatActivity {
 
     public View getRootView() {
         return rootView;
+    }
+
+    public VM getVModel() {
+        if (VModel == null) {
+            throw new NullPointerException("You should setViewModel first!");
+        }
+        return VModel;
+    }
+
+    public void setVModel(VM VModel) {
+        this.VModel = VModel;
     }
 
     @Override

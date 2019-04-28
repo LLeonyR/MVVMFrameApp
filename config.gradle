@@ -20,12 +20,13 @@ ext {
             "lifecycle-compiler"  : "android.arch.lifecycle:compiler:1.1.1"
     ]
     thirdLib = [
-            "retrofit"     : "com.squareup.retrofit2:retrofit:2.5.0",
-            "rxandroid"    : "io.reactivex.rxjava2:rxandroid:2.1.1",
-            "okhttp"       : "com.squareup.okhttp3:okhttp:3.14.1",
-            "okio"         : "com.squareup.okio:okio:2.2.2",
-            "glide"        : "com.github.bumptech.glide:glide:4.9.0",
-            "glideCompiler": 'com.github.bumptech.glide:compiler:4.9.0',
-            "multitype"    : "me.drakeet.multitype:multitype:3.4.4"
+            "retrofit"          : "com.squareup.retrofit2:retrofit:2.5.0",
+            "rxandroid"         : "io.reactivex.rxjava2:rxandroid:2.1.1",
+            "okhttp"            : "com.squareup.okhttp3:okhttp:3.14.1",
+            "okio"              : "com.squareup.okio:okio:2.2.2",
+            "loggingInterceptor": "com.squareup.okhttp3:logging-interceptor:3.14.1",
+            "glide"             : "com.github.bumptech.glide:glide:4.9.0",
+            "glideCompiler"     : 'com.github.bumptech.glide:compiler:4.9.0',
+            "multitype"         : "me.drakeet.multitype:multitype:3.4.4"
     ]
 }

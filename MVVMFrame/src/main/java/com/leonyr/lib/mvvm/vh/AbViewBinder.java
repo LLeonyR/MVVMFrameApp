@@ -17,14 +17,14 @@ import me.drakeet.multitype.ItemViewBinder;
  * (C) Copyright LeonyR Corporation 2014 All Rights Reserved.
  * ==============================================================
  */
-public abstract class AbViewBinder<DATA, BINDING extends ViewDataBinding>
-        extends ItemViewBinder<DATA, BindViewHolder<BINDING>> {
+public abstract class AbViewBinder<Data, Binding extends ViewDataBinding>
+        extends ItemViewBinder<Data, BindViewHolder<Binding>> {
 
     @NonNull
     @Override
-    protected BindViewHolder<BINDING> onCreateViewHolder(@NonNull LayoutInflater inflater,
+    protected BindViewHolder<Binding> onCreateViewHolder(@NonNull LayoutInflater inflater,
                                                          @NonNull ViewGroup parent) {
-        BINDING binding = DataBindingUtil.inflate(inflater, getLayoutId(), parent, false);
+        Binding binding = DataBindingUtil.inflate(inflater, getLayoutId(), parent, false);
         return new BindViewHolder<>(binding);
     }
 

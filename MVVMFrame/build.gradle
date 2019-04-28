@@ -12,6 +12,8 @@ android {
         targetSdkVersion rootProject.ext.android.targetVersion
         versionCode rootProject.ext.android.versionCode
         versionName rootProject.ext.android.versionName
+
+        buildConfigField "String", "API_HOST", ''
     }
 
     dataBinding {
@@ -27,6 +29,8 @@ android {
     lintOptions {
         abortOnError false
     }
+
+
 }
 
 dependencies {
@@ -49,7 +53,9 @@ dependencies {
     }
     annotationProcessor rootProject.ext.thirdLib["glideCompiler"]
 
-    compile rootProject.ext.leonyr["utils"]
+    compile(rootProject.ext.leonyr["utils"]) {
+        exclude group: "com.android.support"
+    }
 }
 
 ext {

@@ -9,7 +9,6 @@ import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
-import android.support.v4.app.Fragment;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,7 +17,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.leonyr.lib.R;
-import com.leonyr.lib.mvvm.vm.ViewModel;
+import com.leonyr.lib.mvvm.vm.LViewModel;
 
 /**
  * ==============================================================
@@ -28,7 +27,7 @@ import com.leonyr.lib.mvvm.vm.ViewModel;
  * (C) Copyright LeonyR Corporation 2014 All Rights Reserved.
  * ==============================================================
  */
-public abstract class AbBindDialogFragment<VM extends ViewModel, B extends ViewDataBinding> extends DialogFragment {
+public abstract class AbBindDialogFragment<VM extends LViewModel, B extends ViewDataBinding> extends DialogFragment {
 
     protected String TAG;
     private VM VModel;

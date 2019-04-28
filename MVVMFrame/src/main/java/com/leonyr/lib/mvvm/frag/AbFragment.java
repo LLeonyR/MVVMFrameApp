@@ -1,8 +1,6 @@
 package com.leonyr.lib.mvvm.frag;
 
 import android.content.Context;
-import android.databinding.DataBindingUtil;
-import android.databinding.ViewDataBinding;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
@@ -11,7 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.leonyr.lib.mvvm.vm.ViewModel;
+import com.leonyr.lib.mvvm.vm.LViewModel;
 
 /**
  * ==============================================================
@@ -21,7 +19,7 @@ import com.leonyr.lib.mvvm.vm.ViewModel;
  * (C) Copyright LeonyR Corporation 2014 All Rights Reserved.
  * ==============================================================
  */
-public abstract class AbFragment<VM extends ViewModel> extends Fragment {
+public abstract class AbFragment<VM extends LViewModel> extends Fragment {
 
     protected String TAG;
     private VM VModel;

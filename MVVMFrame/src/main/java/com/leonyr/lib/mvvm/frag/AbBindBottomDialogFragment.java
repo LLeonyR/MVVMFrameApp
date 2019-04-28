@@ -7,12 +7,11 @@ import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetDialogFragment;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.leonyr.lib.mvvm.vm.ViewModel;
+import com.leonyr.lib.mvvm.vm.LViewModel;
 
 /**
  * ==============================================================
@@ -22,7 +21,7 @@ import com.leonyr.lib.mvvm.vm.ViewModel;
  * (C) Copyright LeonyR Corporation 2014 All Rights Reserved.
  * ==============================================================
  */
-public abstract class AbBindBottomDialogFragment<VM extends ViewModel, B extends ViewDataBinding> extends BottomSheetDialogFragment {
+public abstract class AbBindBottomDialogFragment<VM extends LViewModel, B extends ViewDataBinding> extends BottomSheetDialogFragment {
 
     protected String TAG;
     private VM VModel;

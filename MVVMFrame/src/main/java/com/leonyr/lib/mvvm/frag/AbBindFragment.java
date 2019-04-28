@@ -11,7 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.leonyr.lib.mvvm.vm.ViewModel;
+import com.leonyr.lib.mvvm.vm.LViewModel;
 
 /**
  * ==============================================================
@@ -21,7 +21,7 @@ import com.leonyr.lib.mvvm.vm.ViewModel;
  * (C) Copyright LeonyR Corporation 2014 All Rights Reserved.
  * ==============================================================
  */
-public abstract class AbBindFragment<VM extends ViewModel, B extends ViewDataBinding> extends Fragment {
+public abstract class AbBindFragment<VM extends LViewModel, B extends ViewDataBinding> extends Fragment {
 
     protected String TAG;
     private VM VModel;

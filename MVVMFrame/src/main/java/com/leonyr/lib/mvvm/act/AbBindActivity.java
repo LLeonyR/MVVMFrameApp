@@ -8,6 +8,8 @@ import android.support.annotation.LayoutRes;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Window;
 
+import com.leonyr.lib.mvvm.vm.LViewModel;
+
 /**
  * ==============================================================
  * Description: databing activity 基类
@@ -16,11 +18,12 @@ import android.view.Window;
  * (C) Copyright LeonyR Corporation 2014 All Rights Reserved.
  * ==============================================================
  */
-public abstract class AbBindActivity<T extends ViewDataBinding> extends AppCompatActivity {
+public abstract class AbBindActivity<VM extends LViewModel, T extends ViewDataBinding> extends AppCompatActivity {
 
     protected String TAG;
     protected Context mCtx;
     private T binding;
+    private VM VModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +40,17 @@ public abstract class AbBindActivity<T extends ViewDataBinding> extends AppCompa
 
     public T Binding() {
         return binding;
+    }
+
+    public VM getVModel() {
+        if (VModel == null) {
+            throw new NullPointerException("You should setViewModel first!");
+        }
+        return VModel;
+    }
+
+    public void setVModel(VM VModel) {
+        this.VModel = VModel;
     }
 
     @Override

@@ -1,8 +1,13 @@
 package com.leonyr.mvvmframe.activity;
 
+import android.arch.lifecycle.ViewModelProviders;
+
 import com.leonyr.lib.mvvm.act.AbActivity;
 import com.leonyr.lib.mvvm.vm.LViewModel;
+import com.leonyr.lib.mvvm.vm.LViewModelFactory;
+import com.leonyr.lib.utils.LogUtil;
 import com.leonyr.mvvmframe.R;
+import com.leonyr.mvvmframe.vm.MainViewModel;
 
 public class MainActivity extends AbActivity {
 
@@ -21,7 +26,7 @@ public class MainActivity extends AbActivity {
      */
     @Override
     protected void initView() {
-//        vm = ViewModelProviders.of(this).get(MainViewModel.class);
-//        LogUtil.e("main", "test");
+        vm = ViewModelProviders.of(this, new LViewModelFactory(this)).get(MainViewModel.class);
+        LogUtil.e("main", "test");
     }
 }

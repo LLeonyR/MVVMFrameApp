@@ -5,6 +5,8 @@ import android.arch.lifecycle.ViewModel;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
+import java.lang.ref.WeakReference;
+
 /**
  * ==============================================================
  * Description:context aware {@link ViewModel}.
@@ -16,10 +18,10 @@ import android.support.annotation.NonNull;
 public class LViewModel extends ViewModel{
 
     @SuppressLint("StaticFieldLeak")
-    private Context context;
+    private WeakReference<Context> context;
 
     public LViewModel(@NonNull Context ctx) {
-        context = ctx;
+        context = new WeakReference<>(ctx);
     }
 
     /**
@@ -29,7 +31,7 @@ public class LViewModel extends ViewModel{
     @NonNull
     public <T extends Context> T getContext() {
         //noinspection unchecked
-        return (T) context;
+        return (T) context.get();
     }
 
 }
