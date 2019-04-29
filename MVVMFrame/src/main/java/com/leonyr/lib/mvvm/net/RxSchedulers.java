@@ -1,4 +1,4 @@
-package com.leonyr.lib.mvvm.rx;
+package com.leonyr.lib.mvvm.net;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;

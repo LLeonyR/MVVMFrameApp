@@ -13,7 +13,7 @@ android {
         versionCode rootProject.ext.android.versionCode
         versionName rootProject.ext.android.versionName
 
-        buildConfigField "String", "API_HOST", ''
+        buildConfigField "String", "API_HOST", '""'
     }
 
     dataBinding {
@@ -47,6 +47,10 @@ dependencies {
     compile rootProject.ext.thirdLib["retrofit"]
     compile rootProject.ext.thirdLib["rxandroid"]
     compile rootProject.ext.thirdLib["okhttp"]
+    compile rootProject.ext.thirdLib["gson"]
+    compile rootProject.ext.thirdLib["loggingInterceptor"]
+    compile rootProject.ext.thirdLib["converter-gson"]
+    compile rootProject.ext.thirdLib["rxjava2-adapter"]
 
     compile(rootProject.ext.thirdLib["glide"]){
         exclude group: "com.android.support"

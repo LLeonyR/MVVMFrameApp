@@ -1,23 +1,21 @@
 package com.leonyr.mvvmframe;
 
-import android.app.Application;
+import com.leonyr.mvvmframe.model.Momodiy;
 
-import com.leonyr.lib.mvvm.net.NetClient;
+import io.reactivex.Observable;
+import retrofit2.http.GET;
 
 /**
  * ==============================================================
  * Description:
  * <p>
- * Created by 01385127 on 2019.04.28
+ * Created by 01385127 on 2019.04.29
  * (C) Copyright sf_Express Corporation 2014 All Rights Reserved.
  * ==============================================================
  */
-public class MVVMApplication extends Application {
+public interface GitHubApi {
 
-    @Override
-    public void onCreate() {
-        super.onCreate();
+    @GET("/users/momodiy")
+    Observable<Momodiy> gitMomodiy();
 
-
-    }
 }
