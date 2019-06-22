@@ -1,9 +1,13 @@
-package com.leonyr.lib.mvvm.vm;
+package com.leonyr.mvvm.vm;
 
 import android.annotation.SuppressLint;
 import android.arch.lifecycle.ViewModel;
+import android.arch.lifecycle.ViewModelProvider;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 
 import java.lang.ref.WeakReference;
 
@@ -15,7 +19,7 @@ import java.lang.ref.WeakReference;
  * (C) Copyright sf_Express Corporation 2014 All Rights Reserved.
  * ==============================================================
  */
-public class LViewModel extends ViewModel{
+public class LViewModel extends ViewModel {
 
     @SuppressLint("StaticFieldLeak")
     private WeakReference<Context> context;
@@ -34,4 +38,25 @@ public class LViewModel extends ViewModel{
         return (T) context.get();
     }
 
+    /**
+     * 简化创建ViewModel
+     *
+     * @param a      创建的activity
+     * @param tClass ViewModel类别
+     * @returna
+     */
+    public static <C extends ViewModel> C create(AppCompatActivity a, Class<C> tClass) {
+        return ViewModelProviders.of(a, new LViewModelFactory(a)).get(tClass);
+    }
+
+    /**
+     * 简化创建ViewModel
+     *
+     * @param f      创建的activity
+     * @param tClass ViewModel类别
+     * @returna
+     */
+    public static <C extends ViewModel> C create(Fragment f, Class<C> tClass) {
+        return ViewModelProviders.of(f, new LViewModelFactory(f.getContext())).get(tClass);
+    }
 }

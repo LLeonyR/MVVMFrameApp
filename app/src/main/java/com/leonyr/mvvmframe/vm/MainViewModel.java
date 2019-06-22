@@ -3,9 +3,9 @@ package com.leonyr.mvvmframe.vm;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
-import com.leonyr.lib.mvvm.net.NetClient;
-import com.leonyr.lib.mvvm.net.RxSchedulers;
-import com.leonyr.lib.mvvm.vm.LViewModel;
+import com.leonyr.mvvm.net.NetClient;
+import com.leonyr.mvvm.net.RxSchedulers;
+import com.leonyr.mvvm.vm.LViewModel;
 import com.leonyr.lib.utils.LogUtil;
 import com.leonyr.mvvmframe.GitHubApi;
 import com.leonyr.mvvmframe.model.Momodiy;

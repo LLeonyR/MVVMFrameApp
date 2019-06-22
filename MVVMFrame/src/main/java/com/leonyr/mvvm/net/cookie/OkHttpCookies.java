@@ -1,4 +1,4 @@
-package com.leonyr.lib.mvvm.net.cookie;
+package com.leonyr.mvvm.net.cookie;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;

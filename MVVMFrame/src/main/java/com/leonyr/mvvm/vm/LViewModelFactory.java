@@ -1,4 +1,4 @@
-package com.leonyr.lib.mvvm.vm;
+package com.leonyr.mvvm.vm;
 
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;

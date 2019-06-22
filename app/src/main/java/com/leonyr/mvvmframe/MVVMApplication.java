@@ -2,7 +2,7 @@ package com.leonyr.mvvmframe;
 
 import android.app.Application;
 
-import com.leonyr.lib.mvvm.net.NetClient;
+import com.leonyr.mvvm.net.NetClient;
 
 /**
  * ==============================================================

@@ -1,4 +1,4 @@
-package com.leonyr.lib.mvvm.net;
+package com.leonyr.mvvm.net;
 
 import android.support.annotation.NonNull;
 
