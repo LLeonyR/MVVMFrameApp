@@ -15,10 +15,14 @@ import android.support.v7.widget.RecyclerView;
 public class BindViewHolder<T extends ViewDataBinding> extends RecyclerView.ViewHolder {
 
     @NonNull
-    public final T binding;
+    private final T binding;
 
     public BindViewHolder(@NonNull T binding) {
         super(binding.getRoot());
         this.binding = binding;
+    }
+
+    public T Binding(){
+        return binding;
     }
 }

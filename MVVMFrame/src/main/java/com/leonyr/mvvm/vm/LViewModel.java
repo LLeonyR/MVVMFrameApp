@@ -7,6 +7,7 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 
 import java.lang.ref.WeakReference;
@@ -45,7 +46,7 @@ public class LViewModel extends ViewModel {
      * @param tClass ViewModel类别
      * @returna
      */
-    public static <C extends ViewModel> C create(AppCompatActivity a, Class<C> tClass) {
+    public static <C extends ViewModel> C create(FragmentActivity a, Class<C> tClass) {
         return ViewModelProviders.of(a, new LViewModelFactory(a)).get(tClass);
     }
 
@@ -58,5 +59,27 @@ public class LViewModel extends ViewModel {
      */
     public static <C extends ViewModel> C create(Fragment f, Class<C> tClass) {
         return ViewModelProviders.of(f, new LViewModelFactory(f.getContext())).get(tClass);
+    }
+
+    /**
+     * 简化创建ViewModel
+     *
+     * @param a      创建的activity
+     * @param tClass ViewModel类别
+     * @returna
+     */
+    public static <C extends ViewModel> C createAndroid(FragmentActivity a, Class<C> tClass) {
+        return ViewModelProviders.of(a, new ViewModelProvider.AndroidViewModelFactory(a.getApplication())).get(tClass);
+    }
+
+    /**
+     * 简化创建ViewModel
+     *
+     * @param f      创建的activity
+     * @param tClass ViewModel类别
+     * @returna
+     */
+    public static <C extends ViewModel> C createAndroid(Fragment f, Class<C> tClass) {
+        return ViewModelProviders.of(f, new ViewModelProvider.AndroidViewModelFactory(f.getActivity().getApplication())).get(tClass);
     }
 }

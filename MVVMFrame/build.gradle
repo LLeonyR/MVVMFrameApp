@@ -58,6 +58,9 @@ dependencies {
     }
     annotationProcessor rootProject.ext.thirdLib["glideCompiler"]
 
+    compile rootProject.ext.thirdLib["parceler-api"]
+    annotationProcessor rootProject.ext.thirdLib["parceler-annotation"]
+
     compile(rootProject.ext.leonyr["utils"]) {
         exclude group: "com.android.support"
     }
@@ -91,4 +94,4 @@ ext {
 //apply from: 'android-maven-install.gradle'
 //apply from: 'android-tasks.gradle'
 //apply from: 'bintray.gradle'
-apply from: 'jcenter.gradle'
+//apply from: 'jcenter.gradle'

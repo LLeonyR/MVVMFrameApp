@@ -1,4 +1,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.leonyr.mvvm" >
+    package="com.leonyr.mvvm">
+
+    <application>
+        <activity
+            android:name=".act.Common"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+    </application>
 
 </manifest>

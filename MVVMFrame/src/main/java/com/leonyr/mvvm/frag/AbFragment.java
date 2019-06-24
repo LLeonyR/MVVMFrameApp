@@ -19,7 +19,7 @@ import com.leonyr.mvvm.vm.LViewModel;
  * (C) Copyright LeonyR Corporation 2014 All Rights Reserved.
  * ==============================================================
  */
-public abstract class AbFragment<VM extends LViewModel> extends Fragment {
+public abstract class AbFragment<VM extends LViewModel> extends IFragment {
 
     protected String TAG;
     private VM VModel;
