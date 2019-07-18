@@ -2,8 +2,6 @@ package com.leonyr.mvvmframe;
 
 import android.app.Application;
 
-import com.leonyr.mvvm.net.NetClient;
-
 /**
  * ==============================================================
  * Description:

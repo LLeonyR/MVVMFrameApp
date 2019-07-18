@@ -3,15 +3,7 @@ package com.leonyr.mvvmframe.vm;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
-import com.leonyr.mvvm.net.NetClient;
-import com.leonyr.mvvm.net.RxSchedulers;
 import com.leonyr.mvvm.vm.LViewModel;
-import com.leonyr.lib.utils.LogUtil;
-import com.leonyr.mvvmframe.GitHubApi;
-import com.leonyr.mvvmframe.model.Momodiy;
-
-import io.reactivex.Observer;
-import io.reactivex.disposables.Disposable;
 
 /**
  * ==============================================================
@@ -30,7 +22,7 @@ public class MainViewModel extends LViewModel {
     }
 
     public void loadData() {
-        NetClient.setApiHost("https://api.github.com");
+        /*NetClient.setApiHost("https://api.github.com");
         GitHubApi api = NetClient.build(GitHubApi.class);
 
         api.gitMomodiy().compose(RxSchedulers.IOMain())
@@ -54,7 +46,7 @@ public class MainViewModel extends LViewModel {
                     public void onComplete() {
                         LogUtil.e(TAG, "onComplete");
                     }
-                });
+                });*/
     }
 
 }

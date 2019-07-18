@@ -1,10 +1,5 @@
 package com.leonyr.mvvmframe;
 
-import com.leonyr.mvvmframe.model.Momodiy;
-
-import io.reactivex.Observable;
-import retrofit2.http.GET;
-
 /**
  * ==============================================================
  * Description:
@@ -15,7 +10,7 @@ import retrofit2.http.GET;
  */
 public interface GitHubApi {
 
-    @GET("/users/momodiy")
+  /*  @GET("/users/momodiy")
     Observable<Momodiy> gitMomodiy();
-
+*/
 }
