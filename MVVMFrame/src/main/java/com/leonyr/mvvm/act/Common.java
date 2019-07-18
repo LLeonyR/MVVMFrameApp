@@ -1,12 +1,15 @@
 package com.leonyr.mvvm.act;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.leonyr.lib.utils.LogUtil;
@@ -42,6 +45,12 @@ public class Common extends AbBindActivity<LViewModel, CommonBinding> {
         Intent intent = new Intent(fragment.getContext(), Common.class);
         intent.putExtra(KEY_TYPE, Parcels.wrap(type));
         fragment.startActivityForResult(intent, requestCode);
+    }
+
+    public static void startForResult(FragmentActivity c, Type type, int requestCode) {
+        Intent intent = new Intent(c, Common.class);
+        intent.putExtra(KEY_TYPE, Parcels.wrap(type));
+        c.startActivityForResult(intent, requestCode);
     }
 
     @Override
