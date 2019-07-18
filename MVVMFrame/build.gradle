@@ -74,7 +74,7 @@ ext {
     name = 'MVVMFrame'                                                // 必须和library module的名字相同
     libraryDesc = 'MVVM框架'
     publishedGroupId = 'com.leonyr'                // 填写groupId， 一般是包名，比如：com.android.support
-    versionName = '0.0.4'                                               // 版本号，比如：22.2.1
+    versionName = '0.0.5'                                               // 版本号，比如：22.2.1
     websiteUrl = 'https://github.com/LLeonyR/MVVMFrameApp'              // 可以填写github上的库地址.
     issueTrackerUrl = 'https://github.com/LLeonyR/MVVMFrameApp.git'  // 可以填写github库的issue地址.
     vcsUrl = 'https://github.com/LLeonyR/MVVMFrameApp.git'              // 可以填写github上库的地址.
@@ -94,4 +94,4 @@ ext {
 //apply from: 'android-maven-install.gradle'
 //apply from: 'android-tasks.gradle'
 //apply from: 'bintray.gradle'
-//apply from: 'jcenter.gradle'
+apply from: 'jcenter.gradle'
