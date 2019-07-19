@@ -49,11 +49,11 @@ dependencies {
         transitive = false
     }*/
     compile rootProject.ext.thirdLib["rxandroid"]
-    compile(rootProject.ext.thirdLib["rxpermission"]) {
+    compile rootProject.ext.thirdLib["gson"]
+    /*compile(rootProject.ext.thirdLib["rxpermission"]) {
         transitive = false
     }
-    compile rootProject.ext.thirdLib["gson"]
-    /*compile rootProject.ext.thirdLib["okhttp"]
+    compile rootProject.ext.thirdLib["okhttp"]
     compile rootProject.ext.thirdLib["loggingInterceptor"]
     compile rootProject.ext.thirdLib["converter-gson"]*/
     compile rootProject.ext.thirdLib["multitype"]
