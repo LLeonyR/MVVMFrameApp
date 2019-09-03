@@ -2,11 +2,13 @@ package com.leonyr.mvvm.frag;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.app.Fragment;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -97,4 +99,13 @@ public abstract class AbDialogFragment<VM extends LViewModel> extends DialogFrag
     protected abstract int getLayoutResId();
 
     protected abstract void initView(View rootView, Bundle savedInstanceState) ;
+
+    protected void setResult(int result_OK, Intent intent) {
+        Fragment targetFragment = getTargetFragment();
+        if (targetFragment == null) {
+            return;
+        }
+        getTargetFragment().onActivityResult(getTargetRequestCode(), result_OK, intent);
+        getFragmentManager().popBackStack();
+    }
 }
