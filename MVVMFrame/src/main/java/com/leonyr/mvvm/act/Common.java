@@ -1,16 +1,14 @@
 package com.leonyr.mvvm.act;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 
 import com.leonyr.lib.utils.LogUtil;
 import com.leonyr.lib.utils.StatusBarUtil;
@@ -76,7 +74,16 @@ public class Common extends AbBindActivity<LViewModel, CommonBinding> {
             LogUtil.e("Common", "fragment type is null.");
             return;
         }
-        replaceFragment(type, canBack);
+
+        if (fragList.isEmpty()) {
+            replaceFragment(type, canBack);
+        }else {
+            Fragment frag = fragList.get(fragList.size() - 1).get();
+            if (frag instanceof DialogFragment){
+                ((DialogFragment) frag).dismiss();
+            }
+            replaceFragment(type, canBack);
+        }
     }
 
     protected void getIntentData(Intent intent) {

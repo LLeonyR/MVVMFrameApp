@@ -9,9 +9,10 @@ ext {
             versionName   : "1.0.0"
     ]
     leonyr = [
-            "utils": "com.leonyr:EaseyUtils:0.0.7",
-            "MVVM" : "com.leonyr:MVVMFrame:0.0.4",
-            "MVVM-NONET" : "com.leonyr:MVVMFrame:0.0.1-nonet"
+            "utils"     : "com.leonyr:EaseyUtils:0.0.9",
+            "MVVM"      : "com.leonyr:MVVMFrame:0.0.4",
+            "MVVM-NONET": "com.leonyr:MVVMFrame:0.0.1-nonet",
+            "EaseyView" : "com.leonyr:EaseyView:0.0.2"
 
     ]
     dependencies = [
