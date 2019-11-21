@@ -1,4 +1,4 @@
-package com.leonyr.lib.mvvm.net;
+package com.leonyr.mvvm.net;
 
 import java.io.IOException;
 import java.util.Map;

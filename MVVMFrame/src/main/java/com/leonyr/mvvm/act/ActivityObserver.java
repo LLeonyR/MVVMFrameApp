@@ -1,4 +1,4 @@
-package com.leonyr.lib.mvvm.act;
+package com.leonyr.mvvm.act;
 
 import android.arch.lifecycle.Lifecycle;
 import android.arch.lifecycle.LifecycleObserver;

@@ -1,4 +1,4 @@
-package com.leonyr.lib.mvvm.net;
+package com.leonyr.mvvm.net;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
@@ -20,7 +20,8 @@ public class RxSchedulers {
         return new ObservableTransformer<T, T>() {
             @Override
             public ObservableSource<T> apply(@NonNull Observable<T> upstream) {
-                return upstream.subscribeOn(Schedulers.io())
+                return upstream
+                        .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread());
             }
         };

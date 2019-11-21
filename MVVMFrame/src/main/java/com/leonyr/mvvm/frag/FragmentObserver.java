@@ -1,4 +1,4 @@
-package com.leonyr.lib.mvvm.frag;
+package com.leonyr.mvvm.frag;
 
 import android.arch.lifecycle.Lifecycle;
 import android.arch.lifecycle.LifecycleObserver;

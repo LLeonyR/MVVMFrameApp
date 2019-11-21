@@ -1,4 +1,4 @@
-package com.leonyr.lib.mvvm.vh;
+package com.leonyr.mvvm.vh;
 
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;

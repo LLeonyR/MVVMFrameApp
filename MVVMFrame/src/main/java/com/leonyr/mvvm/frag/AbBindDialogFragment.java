@@ -1,7 +1,9 @@
-package com.leonyr.lib.mvvm.frag;
+package com.leonyr.mvvm.frag;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.databinding.DataBindingUtil;
+import android.databinding.ViewDataBinding;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
@@ -14,8 +16,8 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 
-import com.leonyr.lib.R;
-import com.leonyr.lib.mvvm.vm.LViewModel;
+import com.leonyr.mvvm.R;
+import com.leonyr.mvvm.vm.LViewModel;
 
 /**
  * ==============================================================
@@ -25,16 +27,12 @@ import com.leonyr.lib.mvvm.vm.LViewModel;
  * (C) Copyright LeonyR Corporation 2014 All Rights Reserved.
  * ==============================================================
  */
-public abstract class AbDialogFragment<VM extends LViewModel> extends DialogFragment {
+public abstract class AbBindDialogFragment<VM extends LViewModel, B extends ViewDataBinding> extends DialogFragment {
 
     protected String TAG;
     private VM VModel;
     protected Context mCtx;
-    protected View rootView;
-
-    public AbDialogFragment(){
-        getLifecycle().addObserver(new FragmentObserver());
-    }
+    private B binding;
 
     @Override
     public void onAttach(Context context) {
@@ -47,20 +45,22 @@ public abstract class AbDialogFragment<VM extends LViewModel> extends DialogFrag
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        if (rootView == null) {
-            rootView = inflater.inflate(getLayoutResId(), container);
-            initView(rootView, savedInstanceState);
+        if (binding == null) {
+            binding = DataBindingUtil.inflate(inflater, getLayoutResId(), container, false);
+            initView(binding.getRoot(), savedInstanceState);
         }
-        ViewGroup parent = (ViewGroup) rootView.getParent();
+        ViewGroup parent = (ViewGroup) binding.getRoot().getParent();
         if (parent != null) {
-            parent.removeView(rootView);
+            parent.removeView(binding.getRoot());
         }
+
         getDialog().setCanceledOnTouchOutside(false);
-        return rootView;
+
+        return binding.getRoot();
     }
 
-    public View getRootView() {
-        return rootView;
+    public B Binding() {
+        return binding;
     }
 
     protected static float WIDTH_RATIO = 0.85f;

@@ -1,6 +1,8 @@
-package com.leonyr.lib.mvvm.frag;
+package com.leonyr.mvvm.frag;
 
 import android.content.Context;
+import android.databinding.DataBindingUtil;
+import android.databinding.ViewDataBinding;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
@@ -9,7 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.leonyr.lib.mvvm.vm.LViewModel;
+import com.leonyr.mvvm.vm.LViewModel;
 
 /**
  * ==============================================================
@@ -19,16 +21,12 @@ import com.leonyr.lib.mvvm.vm.LViewModel;
  * (C) Copyright LeonyR Corporation 2014 All Rights Reserved.
  * ==============================================================
  */
-public abstract class AbFragment<VM extends LViewModel> extends Fragment {
+public abstract class AbBindFragment<VM extends LViewModel, B extends ViewDataBinding> extends IFragment {
 
     protected String TAG;
     private VM VModel;
     protected Context mCtx;
-    protected View rootView;
-
-    public AbFragment(){
-        getLifecycle().addObserver(new FragmentObserver());
-    }
+    private B binding;
 
     @Override
     public void onAttach(Context context) {
@@ -41,19 +39,19 @@ public abstract class AbFragment<VM extends LViewModel> extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        if (rootView == null) {
-            rootView = inflater.inflate(getLayoutResId(), container);
-            initView(rootView, savedInstanceState);
+        if (binding == null) {
+            binding = DataBindingUtil.inflate(inflater, getLayoutResId(), container, false);
+            initView(binding.getRoot(), savedInstanceState);
         }
-        ViewGroup parent = (ViewGroup) rootView.getParent();
+        ViewGroup parent = (ViewGroup) binding.getRoot().getParent();
         if (parent != null) {
-            parent.removeView(rootView);
+            parent.removeView(binding.getRoot());
         }
-        return rootView;
+        return binding.getRoot();
     }
 
-    public View getRootView() {
-        return rootView;
+    public B Binding() {
+        return binding;
     }
 
     public VM getVModel() {

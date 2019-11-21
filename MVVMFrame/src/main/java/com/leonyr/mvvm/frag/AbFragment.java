@@ -1,15 +1,15 @@
-package com.leonyr.lib.mvvm.frag;
+package com.leonyr.mvvm.frag;
 
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
-import android.support.design.widget.BottomSheetDialogFragment;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.leonyr.lib.mvvm.vm.LViewModel;
+import com.leonyr.mvvm.vm.LViewModel;
 
 /**
  * ==============================================================
@@ -19,12 +19,16 @@ import com.leonyr.lib.mvvm.vm.LViewModel;
  * (C) Copyright LeonyR Corporation 2014 All Rights Reserved.
  * ==============================================================
  */
-public abstract class AbBottomDialogFragment<VM extends LViewModel> extends BottomSheetDialogFragment {
+public abstract class AbFragment<VM extends LViewModel> extends IFragment {
 
     protected String TAG;
     private VM VModel;
     protected Context mCtx;
     protected View rootView;
+
+    public AbFragment(){
+        getLifecycle().addObserver(new FragmentObserver());
+    }
 
     @Override
     public void onAttach(Context context) {
