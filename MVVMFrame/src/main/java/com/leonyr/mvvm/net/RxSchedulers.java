@@ -26,4 +26,36 @@ public class RxSchedulers {
             }
         };
     }
+
+    public static <T> ObservableTransformer<T, T> ComputMain() {
+        return new ObservableTransformer<T, T>() {
+            @Override
+            public ObservableSource<T> apply(@NonNull Observable<T> upstream) {
+                return upstream
+                        .subscribeOn(Schedulers.computation())
+                        .observeOn(AndroidSchedulers.mainThread());
+            }
+        };
+    }
+    public static <T> ObservableTransformer<T, T> ComputIO() {
+        return new ObservableTransformer<T, T>() {
+            @Override
+            public ObservableSource<T> apply(@NonNull Observable<T> upstream) {
+                return upstream
+                        .subscribeOn(Schedulers.computation())
+                        .observeOn(Schedulers.io());
+            }
+        };
+    }
+    public static <T> ObservableTransformer<T, T> IOComput() {
+        return new ObservableTransformer<T, T>() {
+            @Override
+            public ObservableSource<T> apply(@NonNull Observable<T> upstream) {
+                return upstream
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(Schedulers.computation());
+            }
+        };
+    }
+
 }

@@ -6,3 +6,6 @@ local.properties
 build
 captures
 .externalNativeBuild
+.project
+.settings
+.classpath
