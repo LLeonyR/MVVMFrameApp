@@ -9,7 +9,7 @@ ext {
             versionName   : "1.0.0"
     ]
     leonyr = [
-            "utils"     : "com.leonyr:EaseyUtils:0.0.9",
+            "utils"     : "com.leonyr:EaseyUtils:0.1.0",
             "MVVM"      : "com.leonyr:MVVMFrame:0.0.4",
             "MVVM-NONET": "com.leonyr:MVVMFrame:0.0.2-nonet",
             "EaseyView" : "com.leonyr:EaseyView:0.0.2"

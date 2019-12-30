@@ -86,13 +86,6 @@ public class NetClient {
             builder.cache(new Cache(cacheDir, HTTP_RESPONSE_DISK_CACHE_MAX_SIZE));
         }
 
-        //  调试模式下，添加日志拦截器
-        if (BuildConfig.DEBUG) {
-            HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-            interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-            builder.addInterceptor(interceptor);
-        }
-
         //拦截添加
         if (null != interceptors) {
             for (Interceptor interceptor : interceptors) {
@@ -127,7 +120,7 @@ public class NetClient {
     }
 
     @NonNull
-    public Gson getDefaultGson() {
+    public static Gson getDefaultGson() {
         return defaultGson;
     }
 
@@ -136,7 +129,7 @@ public class NetClient {
     }
 
     @NonNull
-    public OkHttpClient getHttpClient() {
+    public static OkHttpClient getHttpClient() {
         return httpClient;
     }
 
