@@ -42,6 +42,19 @@ public class Common extends AbBindActivity<LViewModel, CommonBinding> {
         context.startActivity(intent);
     }
 
+    /**
+     * activity 跳转
+     * @param c 当前上下文
+     * @param type 目的
+     */
+    public static void startClearTop(Context c, Type type){
+        Intent intent = new Intent(c, Common.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        intent.putExtra(KEY_TYPE, Parcels.wrap(type));
+        c.startActivity(intent);
+    }
+
     public static void startForResult(Fragment fragment, Type type, int requestCode) {
         Intent intent = new Intent(fragment.getContext(), Common.class);
         intent.putExtra(KEY_TYPE, Parcels.wrap(type));
