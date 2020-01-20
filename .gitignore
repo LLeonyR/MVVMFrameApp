@@ -6,3 +6,13 @@ local.properties
 build
 captures
 .externalNativeBuild
+.project
+.settings
+
+MVVMFrame/.classpath
+MVVMFrame/.project
+MVVMFrame/.settings
+
+app/.classpath
+app/.project
+app/.settings
