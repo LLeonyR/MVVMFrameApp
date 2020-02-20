@@ -1,5 +1,5 @@
 package com.leonyr.mvvm.act
-
+/*
 import android.content.Context
 import android.content.Intent
 import android.databinding.ViewDataBinding
@@ -16,6 +16,7 @@ import com.leonyr.mvvm.frag.AbBindFragment
 import com.leonyr.mvvm.vm.LViewModel
 import org.parceler.Parcels
 import java.lang.ref.WeakReference
+
 
 class Common : AbBindActivity<LViewModel, CommonBinding>() {
 
@@ -95,9 +96,11 @@ class Common : AbBindActivity<LViewModel, CommonBinding>() {
 
     }
 
-    /**
+    */
+/**
      * 用户按返回键监听器
-     */
+     *//*
+
     interface OnBackPressedListener {
         fun onBackPressed(): Boolean
     }
@@ -134,11 +137,13 @@ class Common : AbBindActivity<LViewModel, CommonBinding>() {
             context.startActivity(intent)
         }
 
-        /**
+        */
+/**
          * activity 跳转
          * @param c 当前上下文
          * @param type 目的
-         */
+         *//*
+
         fun startClearTop(c: Context, type: Type) {
             val intent = Intent(c, Common::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
@@ -159,4 +164,4 @@ class Common : AbBindActivity<LViewModel, CommonBinding>() {
             c.startActivityForResult(intent, requestCode)
         }
     }
-}
+}*/

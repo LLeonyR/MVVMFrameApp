@@ -4,13 +4,13 @@ import android.content.Intent
 import android.support.v4.app.Fragment
 import com.leonyr.lib.utils.LogUtil
 import com.leonyr.mvvm.R
-import com.leonyr.mvvm.act.Common
+//import com.leonyr.mvvm.act.Common
 
 open class IFragment : Fragment() {
 
-    fun openFragment(type: Common.Type) {
+    /*fun openFragment(type: Common.Type) {
         openFragment(type.newFragment(), type.tag)
-    }
+    }*/
 
     fun openFragment(fragment: Fragment, tag: String) {
 

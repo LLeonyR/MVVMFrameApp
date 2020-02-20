@@ -1,7 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion rootProject.ext.android.compileVersion
@@ -19,9 +18,6 @@ android {
     dataBinding {
         enabled = true
     }
-    kapt {
-        generateStubs = true
-    }
 
     buildTypes {
         release {
@@ -38,21 +34,25 @@ dependencies {
     implementation rootProject.ext.dependencies["kotlin-stdlib"]
     implementation rootProject.ext.dependencies["appcompat-v7"]
     implementation rootProject.ext.dependencies["design"]
+//    kapt "com.android.databinding:compiler:3.1.4"
 
     implementation rootProject.ext.dependencies["lifecycle-runtime"]
     implementation rootProject.ext.dependencies["lifecycle-extensions"]
-    kapt rootProject.ext.dependencies["databinding-compiler"]
     api rootProject.ext.dependencies["recyclerview-v7"]
     api rootProject.ext.thirdLib["multitype"]
 
+    api rootProject.ext.kotlinDependencies["coroutinesCore"]
+    api rootProject.ext.kotlinDependencies["coroutinesAndroid"]
+
     implementation rootProject.ext.thirdLib["okhttp"]
     implementation rootProject.ext.thirdLib["retrofit"]
+    api rootProject.ext.kotlinDependencies["retrofitCoroutinesAdapter"]
     api rootProject.ext.thirdLib["gson"]
+    api rootProject.ext.thirdLib["converter-moshi"]
     api rootProject.ext.thirdLib["loggingInterceptor"]
 
     api rootProject.ext.thirdLib["parceler-api"]
     annotationProcessor rootProject.ext.thirdLib["parceler-annotation"]
-
 
     api(rootProject.ext.leonyr["utils"]) {
         exclude group: "com.android.support"

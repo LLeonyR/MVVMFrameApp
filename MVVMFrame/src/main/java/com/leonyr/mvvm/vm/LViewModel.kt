@@ -1,13 +1,16 @@
 package com.leonyr.mvvm.vm
 
 import android.annotation.SuppressLint
-import android.arch.lifecycle.ViewModel
-import android.arch.lifecycle.ViewModelProvider
-import android.arch.lifecycle.ViewModelProviders
+import android.arch.lifecycle.*
 import android.content.Context
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentActivity
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.cancelChildren
 import java.lang.ref.WeakReference
+import kotlin.coroutines.CoroutineContext
 
 
 /**
@@ -23,6 +26,17 @@ open class LViewModel(ctx: Context) : ViewModel() {
 
     @SuppressLint("StaticFieldLeak")
     private val context: WeakReference<Context>
+
+    private val parentJob = SupervisorJob()
+
+    private val uiCoroutineContext: CoroutineContext
+        get() = parentJob + Dispatchers.Main
+
+    private val ioCoroutineContext: CoroutineContext
+        get() = parentJob + Dispatchers.Default
+
+    protected val uiScope = CoroutineScope(uiCoroutineContext)
+    protected val ioScope = CoroutineScope(ioCoroutineContext)
 
     init {
         context = WeakReference(ctx)
@@ -87,4 +101,14 @@ open class LViewModel(ctx: Context) : ViewModel() {
             ).get(tClass)
         }
     }
+
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
+    override fun onCleared() {
+        super.onCleared()
+
+        uiScope.coroutineContext.cancelChildren(null)
+        ioScope.coroutineContext.cancelChildren(null)
+    }
+
 }
