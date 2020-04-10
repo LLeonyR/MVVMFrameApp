@@ -2,18 +2,18 @@ package com.leonyr.mvvm.frag
 
 import android.app.Dialog
 import android.content.Context
-import android.databinding.DataBindingUtil
-import android.databinding.ViewDataBinding
 import android.os.Bundle
-import android.support.annotation.LayoutRes
-import android.support.annotation.NonNull
-import android.support.annotation.Nullable
-import android.support.v4.app.DialogFragment
 import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import androidx.annotation.LayoutRes
+import androidx.annotation.NonNull
+import androidx.annotation.Nullable
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
+import androidx.fragment.app.DialogFragment
 
 import com.leonyr.mvvm.R
 import com.leonyr.mvvm.vm.LViewModel
@@ -59,9 +59,11 @@ abstract class AbBindDialogFragment<VM : LViewModel, B : ViewDataBinding> : Dial
         
         binding = DataBindingUtil.inflate(inflater, layoutResId, container, false)
         initView(binding.root, savedInstanceState)
-        
-        val parent = binding.root.parent as ViewGroup
-        parent.removeView(binding.root)
+
+        if(binding.root.parent != null){
+            val parent = binding.root.parent as ViewGroup
+            parent.removeView(binding.root)
+        }
 
         dialog.setCanceledOnTouchOutside(false)
 

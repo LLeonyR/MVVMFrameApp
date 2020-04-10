@@ -1,8 +1,8 @@
 package com.leonyr.mvvm.vm
 
-import android.arch.lifecycle.ViewModel
-import android.arch.lifecycle.ViewModelProvider
 import android.content.Context
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import java.lang.reflect.InvocationTargetException
 
 

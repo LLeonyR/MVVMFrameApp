@@ -1,6 +1,13 @@
 package com.leonyr.mvvm.net
 
-sealed class Result<out T : Any> {
-    data class Success<out T : Any>(val data: T) : Result<T>()
-    data class Error(val exception: Exception) : Result<Nothing>()
+data class Result<T : Any>(val code: Int, var `data`: T? = null, val error: String = ""){
+
+    companion object{
+        const val SUCCESS = 0
+    }
+
+    fun  isSuccess() :Boolean{
+        return code == SUCCESS
+    }
+
 }

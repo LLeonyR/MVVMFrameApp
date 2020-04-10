@@ -2,13 +2,17 @@ package com.leonyr.mvvm.frag
 
 import android.content.Context
 import android.os.Bundle
-import android.support.annotation.LayoutRes
-import android.support.annotation.Nullable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.LayoutRes
+import androidx.annotation.Nullable
+import androidx.lifecycle.Observer
+import com.leonyr.mvvm.net.NetLoading
 
 import com.leonyr.mvvm.vm.LViewModel
+
+//import pub.devrel.easypermissions.EasyPermissions
 
 /**
  * ==============================================================
@@ -21,14 +25,10 @@ import com.leonyr.mvvm.vm.LViewModel
  */
 abstract class AbFragment<VM : LViewModel> : IFragment() {
 
+    lateinit var dialogLoading: NetLoading
+
     lateinit var TAG: String
-    var vModel: VM? = null
-        get() {
-            if (field == null) {
-                throw NullPointerException("You should setViewModel first!")
-            }
-            return field
-        }
+    lateinit var vModel: VM
     protected var mCtx: Context? = null
     var rootView: View? = null
         protected set
@@ -43,15 +43,11 @@ abstract class AbFragment<VM : LViewModel> : IFragment() {
     override fun onAttach(context: Context?) {
         super.onAttach(context)
         mCtx = context
+        dialogLoading = NetLoading(mCtx!!)
         TAG = javaClass.simpleName
     }
 
-    @Nullable
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    @Nullable override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
         if (rootView == null) {
             rootView = inflater.inflate(layoutResId, container)
@@ -62,5 +58,22 @@ abstract class AbFragment<VM : LViewModel> : IFragment() {
         return rootView
     }
 
+     fun observerLoading() {
+        vModel.showLoading.observe(this, Observer { show ->
+            if (show) {
+                dialogLoading.show()
+            } else {
+                dialogLoading.dismiss()
+            }
+        })
+    }
+
     protected abstract fun initView(rootView: View?, savedInstanceState: Bundle?)
+
+    /*override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+
+        // Forward results to EasyPermissions
+        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this)
+    }*/
 }

@@ -1,8 +1,9 @@
 package com.leonyr.mvvm.vh
 
-import android.databinding.ViewDataBinding
-import android.support.annotation.NonNull
-import android.support.v7.widget.RecyclerView
+import androidx.annotation.NonNull
+import androidx.databinding.ViewDataBinding
+import androidx.recyclerview.widget.RecyclerView
+
 
 /**
  * ==============================================================

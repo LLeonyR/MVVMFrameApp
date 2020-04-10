@@ -3,6 +3,7 @@
  * https://www.jianshu.com/p/54e0107a2696
  */
 apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'org.jetbrains.dokka-android'
 
 install {
     repositories.mavenInstaller {
@@ -43,54 +44,33 @@ install {
     }
 }
 
-
-
-/**
- * 打包jardoc.jar 和 sources.jar
- */
-task javadoc(type: Javadoc) {
-    options.encoding = "utf-8"
-    source = android.sourceSets.main.java.srcDirs
-    classpath += files(android.bootClasspath)
-
-    options {
-        //links "http://docs.oracle.com/javase/7/docs/api/"
-        linksOffline "https://developer.android.com/reference","${android.sdkDirectory}/docs/reference"
-        encoding = "UTF-8"
-    }
-    exclude '**/BuildConfig.java'
-    exclude '**/R.java'
-
-//    android.libraryVariants.all { variant ->
-//        variant.javaCompileProvider.configure{
-//            javadoc.classpath += files(it.classpath.files)
-//        }
-//    }
-}
-
-tasks.withType(Javadoc) {
-    options{
-        encoding "UTF-8"
-        charSet 'UTF-8'
-        links "http://docs.oracle.com/javase/7/docs/api"
-    }
-    options.addStringOption('Xdoclint:none', '-quiet')
-}
-
-task sourcesJar(type: Jar) {
+/*task generateSourcesJar(type: Jar) {
+    group = 'jar'
     from android.sourceSets.main.java.srcDirs
     classifier = 'sources'
 }
 
-task javadocJar(type: Jar, dependsOn: javadoc) {
+task javadoc(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+}
+
+
+task dokkaJavadoc(type: org.jetbrains.dokka.gradle.DokkaTask) {
+    outputFormat = "javadoc"
+    outputDirectory = javadoc.destinationDir
+}
+
+task generateJavadoc(type: Jar, dependsOn: dokkaJavadoc) {
+    group = 'jar'
     classifier = 'javadoc'
     from javadoc.destinationDir
 }
 
 artifacts {
-    archives javadocJar
-    archives sourcesJar
-}
+    archives generateJavadoc //javadocJar
+    archives generateSourcesJar //sourcesJar
+}*/
 
 /**
  * bintray上传
@@ -135,14 +115,26 @@ bintray {
         }
     }
 }
+/*
+javadoc {
+    options {
+        encoding "UTF-8"
+        charSet 'UTF-8'
+        author true
+        version true
+        links "http://docs.oracle.com/javase/7/docs/api"
+    }
+}*/
 
 /**
  * 合并打包和上传
  * 执行./gradlew jcenter
  * 自定完胜打包和上传
  */
-task jcenter << {
-    println "Release ${version}"
+task jcenter {
+    doLast {
+        println "Release ${version}"
+    }
 }
 
 jcenter.dependsOn(install)

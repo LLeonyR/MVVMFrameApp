@@ -1,16 +1,19 @@
 package com.leonyr.mvvm.frag
 
 import android.content.Context
-import android.databinding.DataBindingUtil
-import android.databinding.ViewDataBinding
 import android.os.Bundle
-import android.support.annotation.LayoutRes
-import android.support.annotation.Nullable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.LayoutRes
+import androidx.annotation.Nullable
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
+import androidx.lifecycle.Observer
+import com.leonyr.mvvm.net.NetLoading
 
 import com.leonyr.mvvm.vm.LViewModel
+//import pub.devrel.easypermissions.EasyPermissions
 
 /**
  * ==============================================================
@@ -23,14 +26,10 @@ import com.leonyr.mvvm.vm.LViewModel
  */
 abstract class AbBindFragment<VM : LViewModel, B : ViewDataBinding> : IFragment() {
 
+    lateinit var dialogLoading: NetLoading
+
     lateinit var TAG: String
-    var vModel: VM? = null
-        get() {
-            if (field == null) {
-                throw NullPointerException("You should setViewModel first!")
-            }
-            return field
-        }
+    lateinit var vModel: VM
     lateinit var mCtx: Context
     lateinit var binding: B
 
@@ -40,7 +39,18 @@ abstract class AbBindFragment<VM : LViewModel, B : ViewDataBinding> : IFragment(
     override fun onAttach(context: Context) {
         super.onAttach(context)
         mCtx = context
+        dialogLoading = NetLoading(mCtx)
         TAG = javaClass.simpleName
+    }
+
+    fun observerLoading() {
+        vModel.showLoading.observe(this, Observer { show ->
+            if (show) {
+                dialogLoading.show()
+            } else {
+                dialogLoading.dismiss()
+            }
+        })
     }
 
     @Nullable
@@ -54,10 +64,20 @@ abstract class AbBindFragment<VM : LViewModel, B : ViewDataBinding> : IFragment(
         binding = DataBindingUtil.inflate(inflater, layoutResId, container, false)
         initView(binding.root, savedInstanceState)
 
-        val parent = binding.root.parent as ViewGroup
-        parent.removeView(binding.root)
+        if(binding.root.parent != null){
+            val parent = binding.root.parent as ViewGroup
+            parent.removeView(binding.root)
+        }
+
         return binding.root
     }
 
     protected abstract fun initView(rootView: View, savedInstanceState: Bundle?)
+
+    /*override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+
+        // Forward results to EasyPermissions
+        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this)
+    }*/
 }

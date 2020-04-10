@@ -54,3 +54,5 @@ dependencies {
 //    }
     api project(":MVVMFrame")
 }
+
+

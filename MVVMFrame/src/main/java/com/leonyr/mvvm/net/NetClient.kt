@@ -10,7 +10,7 @@ import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
-import retrofit2.converter.moshi.MoshiConverterFactory
+import retrofit2.converter.gson.GsonConverterFactory
 import java.io.File
 import java.util.concurrent.TimeUnit
 
@@ -95,7 +95,7 @@ class NetClient<T> private constructor() {
             retrofit = Retrofit.Builder()
                     .baseUrl(API_HOST)
                     .addCallAdapterFactory(CoroutineCallAdapterFactory())
-                    .addConverterFactory(MoshiConverterFactory.create())
+                    .addConverterFactory(GsonConverterFactory.create())
                     .client(httpClient)
                     .build()
 

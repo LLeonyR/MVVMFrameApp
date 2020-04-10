@@ -9,7 +9,7 @@ class UserViewModel(ctx: Context) : LViewModel(ctx) {
 
     val userRepository =  UserRepository()
 
-    fun actionUserLogin() {
+    /*fun actionUserLogin() {
         ioScope.launch {
             val response = userRepository
                     .actionUserLogin()
@@ -17,6 +17,6 @@ class UserViewModel(ctx: Context) : LViewModel(ctx) {
                 LogUtil.d("message")
             }
         }
-    }
+    }*/
 
 }

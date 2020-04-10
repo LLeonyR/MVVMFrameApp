@@ -1,12 +1,15 @@
 package com.leonyr.mvvm.act
 
 import android.content.Context
-import android.databinding.DataBindingUtil
-import android.databinding.ViewDataBinding
 import android.os.Bundle
-import android.support.annotation.LayoutRes
-import android.support.v7.app.AppCompatActivity
 import android.view.Window
+import androidx.annotation.LayoutRes
+import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
+import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.Observer
+import com.leonyr.mvvm.net.NetLoading
 
 import com.leonyr.mvvm.vm.LViewModel
 
@@ -21,17 +24,13 @@ import com.leonyr.mvvm.vm.LViewModel
  */
 abstract class AbBindActivity<VM : LViewModel, T : ViewDataBinding> : AppCompatActivity() {
 
+    lateinit var dialogLoading: NetLoading
+
     lateinit var TAG: String
     lateinit var mCtx: Context
     lateinit var binding: T
 
-    var vModel: VM? = null
-        get() {
-            if (field == null) {
-                throw NullPointerException("You should setViewModel first!")
-            }
-            return field
-        }
+    lateinit var vModel: VM
 
     /**
      * 获取layout id
@@ -45,20 +44,39 @@ abstract class AbBindActivity<VM : LViewModel, T : ViewDataBinding> : AppCompatA
         lifecycle.addObserver(ActivityObserver())
 
         mCtx = this
+        dialogLoading = NetLoading(mCtx!!)
         binding = DataBindingUtil.setContentView(this, layoutResId)
         TAG = javaClass.simpleName
 
         initView(savedInstanceState)
     }
 
+    fun observerLoading() {
+        vModel.showLoading.observe(this, Observer { show ->
+            if (show) {
+                dialogLoading.show()
+            } else {
+                dialogLoading.dismiss()
+            }
+        })
+    }
+
     override fun onResume() {
         super.onResume()
         TAG = javaClass.simpleName
+
     }
 
     /**
      * 初始化其他数据Data
      */
     protected abstract fun initView(savedInstanceState: Bundle?)
+
+    /*override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+
+        // Forward results to EasyPermissions
+        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this)
+    }*/
 
 }

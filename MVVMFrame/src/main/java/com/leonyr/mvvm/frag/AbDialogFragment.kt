@@ -3,13 +3,13 @@ package com.leonyr.mvvm.frag
 import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
-import android.support.annotation.LayoutRes
-import android.support.v4.app.DialogFragment
 import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import androidx.annotation.LayoutRes
+import androidx.fragment.app.DialogFragment
 import com.leonyr.mvvm.R
 import com.leonyr.mvvm.vm.LViewModel
 

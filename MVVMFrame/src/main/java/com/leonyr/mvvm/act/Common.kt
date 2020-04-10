@@ -1,20 +1,20 @@
 package com.leonyr.mvvm.act
-/*
+
 import android.content.Context
 import android.content.Intent
-import android.databinding.ViewDataBinding
 import android.os.Bundle
-import android.support.annotation.NonNull
-import android.support.v4.app.DialogFragment
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentActivity
+import android.os.Parcelable
+import androidx.annotation.NonNull
+import androidx.databinding.ViewDataBinding
+import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import com.leonyr.lib.utils.LogUtil
 import com.leonyr.lib.utils.StatusBarUtil
 import com.leonyr.mvvm.R
 import com.leonyr.mvvm.databinding.CommonBinding
 import com.leonyr.mvvm.frag.AbBindFragment
 import com.leonyr.mvvm.vm.LViewModel
-import org.parceler.Parcels
 import java.lang.ref.WeakReference
 
 
@@ -30,7 +30,7 @@ class Common : AbBindActivity<LViewModel, CommonBinding>() {
             val ret = arrayListOf<Fragment>()
             fragList.forEach { ref ->
                 val f = ref.get()
-                if (null != f && f.isVisible){
+                if (null != f && f.isVisible) {
                     ret.add(f)
                 }
             }
@@ -49,7 +49,7 @@ class Common : AbBindActivity<LViewModel, CommonBinding>() {
 
     @JvmOverloads
     protected fun getIntentData(intent: Intent, canBack: Boolean = false) {
-        val type = Parcels.unwrap<Type>(intent.getParcelableExtra(KEY_TYPE)!!)
+        val type = intent.getParcelableExtra<Type>(KEY_TYPE)
         if (type == null) {
             LogUtil.e("Common", "fragment type is null.")
             return
@@ -70,7 +70,7 @@ class Common : AbBindActivity<LViewModel, CommonBinding>() {
         StatusBarUtil.setTransparentForWindow(this)
     }
 
-    interface Type {
+    interface Type : Parcelable {
 
         @get:NonNull
         val tag: String
@@ -96,10 +96,10 @@ class Common : AbBindActivity<LViewModel, CommonBinding>() {
 
     }
 
-    */
-/**
+
+    /**
      * 用户按返回键监听器
-     *//*
+     */
 
     interface OnBackPressedListener {
         fun onBackPressed(): Boolean
@@ -133,35 +133,35 @@ class Common : AbBindActivity<LViewModel, CommonBinding>() {
 
         fun start(context: Context, type: Type) {
             val intent = Intent(context, Common::class.java)
-            intent.putExtra(KEY_TYPE, Parcels.wrap(type))
+            intent.putExtra(KEY_TYPE, type)
             context.startActivity(intent)
         }
 
-        */
-/**
+
+        /**
          * activity 跳转
          * @param c 当前上下文
          * @param type 目的
-         *//*
+         */
 
         fun startClearTop(c: Context, type: Type) {
             val intent = Intent(c, Common::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
-            intent.putExtra(KEY_TYPE, Parcels.wrap(type))
+            intent.putExtra(KEY_TYPE, type)
             c.startActivity(intent)
         }
 
         fun startForResult(fragment: Fragment, type: Type, requestCode: Int) {
             val intent = Intent(fragment.getContext(), Common::class.java)
-            intent.putExtra(KEY_TYPE, Parcels.wrap(type))
+            intent.putExtra(KEY_TYPE, type)
             fragment.startActivityForResult(intent, requestCode)
         }
 
         fun startForResult(c: FragmentActivity, type: Type, requestCode: Int) {
             val intent = Intent(c, Common::class.java)
-            intent.putExtra(KEY_TYPE, Parcels.wrap(type))
+            intent.putExtra(KEY_TYPE, type)
             c.startActivityForResult(intent, requestCode)
         }
     }
-}*/
+}

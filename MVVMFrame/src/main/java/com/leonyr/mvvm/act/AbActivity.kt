@@ -2,10 +2,13 @@ package com.leonyr.mvvm.act
 
 import android.content.Context
 import android.os.Bundle
-import android.support.annotation.LayoutRes
-import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.view.Window
+import androidx.annotation.LayoutRes
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.Observer
+import com.leonyr.mvvm.net.NetLoading
 
 
 import com.leonyr.mvvm.vm.LViewModel
@@ -21,18 +24,14 @@ import com.leonyr.mvvm.vm.LViewModel
  */
 abstract class AbActivity<VM : LViewModel> : AppCompatActivity() {
 
+    lateinit var dialogLoading: NetLoading
+
     lateinit var TAG: String
     lateinit var mCtx: Context
     lateinit var rootView: View
         private set
 
-    var vModel: VM? = null
-        get() {
-            if (field == null) {
-                throw NullPointerException("You should setViewModel first!")
-            }
-            return field
-        }
+    lateinit var vModel: VM
 
     /**
      * 获取layout id
@@ -44,12 +43,23 @@ abstract class AbActivity<VM : LViewModel> : AppCompatActivity() {
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         super.onCreate(savedInstanceState)
         mCtx = this
+        dialogLoading = NetLoading(mCtx!!)
         lifecycle.addObserver(ActivityObserver())
 
         setContentView(layoutResId)
         TAG = javaClass.simpleName
 
         initView()
+    }
+
+    fun observerLoading() {
+        vModel.showLoading.observe(this, Observer { show ->
+            if (show) {
+                dialogLoading.show()
+            } else {
+                dialogLoading.dismiss()
+            }
+        })
     }
 
     override fun setContentView(layoutResID: Int) {
@@ -60,6 +70,7 @@ abstract class AbActivity<VM : LViewModel> : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         TAG = javaClass.simpleName
+
     }
 
     /**
@@ -67,4 +78,10 @@ abstract class AbActivity<VM : LViewModel> : AppCompatActivity() {
      */
     protected abstract fun initView()
 
+    /*override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+
+        // Forward results to EasyPermissions
+        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this)
+    }*/
 }

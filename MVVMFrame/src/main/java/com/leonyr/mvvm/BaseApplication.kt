@@ -3,6 +3,7 @@ package com.leonyr.mvvm
 import android.app.Application
 import android.content.Context
 
+
 open class BaseApplication : Application() {
 
     companion object {

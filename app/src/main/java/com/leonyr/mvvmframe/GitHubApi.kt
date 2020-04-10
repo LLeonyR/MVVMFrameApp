@@ -1,10 +1,6 @@
 package com.leonyr.mvvmframe
 
 import com.google.gson.JsonObject
-import com.leonyr.mvvm.net.Result
-import org.json.JSONObject
-
-import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.POST
@@ -21,6 +17,6 @@ import retrofit2.http.POST
 interface GitHubApi {
 
     @POST("api/login")
-    suspend fun login(@Body params: JSONObject): Response<UserModel>
+    suspend fun login(@Body params: JsonObject): Response<UserModel>
 
 }

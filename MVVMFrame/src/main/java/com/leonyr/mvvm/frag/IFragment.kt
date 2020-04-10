@@ -1,7 +1,7 @@
 package com.leonyr.mvvm.frag
 
 import android.content.Intent
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 import com.leonyr.lib.utils.LogUtil
 import com.leonyr.mvvm.R
 //import com.leonyr.mvvm.act.Common

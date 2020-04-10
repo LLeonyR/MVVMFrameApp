@@ -2,12 +2,12 @@ package com.leonyr.mvvm.frag
 
 import android.content.Context
 import android.os.Bundle
-import android.support.annotation.LayoutRes
-import android.support.annotation.Nullable
-import android.support.design.widget.BottomSheetDialogFragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.LayoutRes
+import androidx.annotation.Nullable
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.leonyr.mvvm.vm.LViewModel
 
 /**

@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion rootProject.ext.android.compileVersion
@@ -34,6 +35,7 @@ dependencies {
     implementation rootProject.ext.dependencies["kotlin-stdlib"]
     implementation rootProject.ext.dependencies["appcompat-v7"]
     implementation rootProject.ext.dependencies["design"]
+    api rootProject.ext.dependencies["constraint1"]
 //    kapt "com.android.databinding:compiler:3.1.4"
 
     implementation rootProject.ext.dependencies["lifecycle-runtime"]
@@ -44,17 +46,55 @@ dependencies {
     api rootProject.ext.kotlinDependencies["coroutinesCore"]
     api rootProject.ext.kotlinDependencies["coroutinesAndroid"]
 
-    implementation rootProject.ext.thirdLib["okhttp"]
-    implementation rootProject.ext.thirdLib["retrofit"]
-    api rootProject.ext.kotlinDependencies["retrofitCoroutinesAdapter"]
+    api rootProject.ext.thirdLib["okhttp"]
+    api rootProject.ext.thirdLib["retrofit"]
+    api(rootProject.ext.kotlinDependencies["retrofitCoroutinesAdapter"]){
+        transitive = false
+    }
     api rootProject.ext.thirdLib["gson"]
-    api rootProject.ext.thirdLib["converter-moshi"]
+    api(rootProject.ext.thirdLib["converter-gson"]){
+        transitive = false
+    }
     api rootProject.ext.thirdLib["loggingInterceptor"]
-
-    api rootProject.ext.thirdLib["parceler-api"]
-    annotationProcessor rootProject.ext.thirdLib["parceler-annotation"]
 
     api(rootProject.ext.leonyr["utils"]) {
         exclude group: "com.android.support"
     }
+
+//    compileOnly "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
 }
+
+//import com.novoda.gradle.release.PublishExtension
+
+ext {
+    libraryPackaging = 'aar'                                            //上传aar形式的打包文件
+
+    // jcenter
+    bintrayRepo = "library"                                             // 你上传的位于bintray中的Repository名称，如果没有创建会有一个叫maven的
+    name = 'MVVMFrame'                                                // 必须和library module的名字相同
+    libraryDesc = 'MVVM框架'
+    publishedGroupId = 'com.leonyr'                // 填写groupId， 一般是包名，比如：com.android.support
+    versionName = '0.2'                                               // 版本号，比如：22.2.1
+    websiteUrl = 'https://github.com/LLeonyR/MVVMFrameApp'              // 可以填写github上的库地址.
+    issueTrackerUrl = 'https://github.com/LLeonyR/MVVMFrameApp.git'  // 可以填写github库的issue地址.
+    vcsUrl = 'https://github.com/LLeonyR/MVVMFrameApp.git'              // 可以填写github上库的地址.
+    licenseName = "Apache-2.0"
+    libraryVersionDesc = 'tools class '
+
+    // maven
+    artifact = 'MVVMFrame'                                            // 必须和library module的名字相同
+    libraryName = 'MVVMFrame'
+    developerId = 'lleonyr'
+    developerName = 'LeonyR'
+    developerEmail = 'LeonyR@126.com'
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+
+}
+//apply from: 'android-maven-install.gradle'
+//apply from: 'android-tasks.gradle'
+//apply from: 'bintray.gradle'
+apply from: 'jcenter.gradle'
+

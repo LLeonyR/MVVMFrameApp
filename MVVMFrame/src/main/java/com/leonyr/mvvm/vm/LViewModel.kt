@@ -1,10 +1,10 @@
 package com.leonyr.mvvm.vm
 
 import android.annotation.SuppressLint
-import android.arch.lifecycle.*
 import android.content.Context
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentActivity
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -24,8 +24,11 @@ import kotlin.coroutines.CoroutineContext
  */
 open class LViewModel(ctx: Context) : ViewModel() {
 
+    //加载框显示
+    val showLoading: MutableLiveData<Boolean> = MutableLiveData()
+
     @SuppressLint("StaticFieldLeak")
-    private val context: WeakReference<Context>
+    private val context: WeakReference<Context> = WeakReference(ctx)
 
     private val parentJob = SupervisorJob()
 
@@ -33,19 +36,15 @@ open class LViewModel(ctx: Context) : ViewModel() {
         get() = parentJob + Dispatchers.Main
 
     private val ioCoroutineContext: CoroutineContext
-        get() = parentJob + Dispatchers.Default
+        get() = parentJob + Dispatchers.IO
 
     protected val uiScope = CoroutineScope(uiCoroutineContext)
     protected val ioScope = CoroutineScope(ioCoroutineContext)
 
-    init {
-        context = WeakReference(ctx)
-    }
-
     /**
      * Return the application.
      */
-    fun <T : Context> getContext(): Context? {
+    fun getContext(): Context? {
         return context.get()
     }
 
