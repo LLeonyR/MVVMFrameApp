@@ -24,7 +24,7 @@ open class LRepViewModel(ctx: Context) : LViewModel(ctx) {
         return data
     }*/
 
-    suspend fun <T : Any> safeApiCall(call: suspend () -> Response<T>, errorMessage: String = ""): Result<T> {
+    suspend fun <T : Any> safeApiCall(call: suspend () -> Response<T>, errorMessage: String = "请求失败"): Result<T> {
         return safeApiResult(call, errorMessage)
     }
 

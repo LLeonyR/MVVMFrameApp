@@ -73,7 +73,6 @@ abstract class AbBindFragment<VM : LViewModel, B : ViewDataBinding> : IFragment(
     }
 
     protected abstract fun initView(rootView: View, savedInstanceState: Bundle?)
-
     /*override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
 

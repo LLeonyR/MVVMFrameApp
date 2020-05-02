@@ -113,18 +113,20 @@ class Common : AbBindActivity<LViewModel, CommonBinding>() {
         val fm = supportFragmentManager
 
         //  如果返回栈的数量大于0，那么存在除 ViewPager 中创建 Fragment
-        if (fm.backStackEntryCount > 0) {
-            val fragments = activeFragments
-            val fragment = fragments[fragments.size - 1]
-            if (fragment is OnBackPressedListener) {
-                val b = (fragment as OnBackPressedListener).onBackPressed()
-                if (b) {
-                    return
-                }
+
+        val fragments = activeFragments
+        val fragment = fragments[fragments.size - 1]
+        if (fragment is OnBackPressedListener) {
+            val b = (fragment as OnBackPressedListener).onBackPressed()
+            if (b) {
+                return
+            }else{
+                super.onBackPressed()
             }
+        }else{
+            super.onBackPressed()
         }
 
-        super.onBackPressed()
     }
 
     companion object {

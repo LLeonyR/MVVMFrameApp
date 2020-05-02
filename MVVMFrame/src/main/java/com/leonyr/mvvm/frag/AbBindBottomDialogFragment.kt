@@ -1,5 +1,6 @@
 package com.leonyr.mvvm.frag
 
+import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -69,7 +70,6 @@ abstract class AbBindBottomDialogFragment<VM : LViewModel, B : ViewDataBinding> 
         super.onCreateView(inflater, container, savedInstanceState)
         
         binding = DataBindingUtil.inflate(inflater, layoutResId, container, false)
-        initView(binding.root, savedInstanceState)
 
         if(binding.root.parent != null){
             val parent = binding.root.parent as ViewGroup
@@ -77,6 +77,11 @@ abstract class AbBindBottomDialogFragment<VM : LViewModel, B : ViewDataBinding> 
         }
 
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initView(view, savedInstanceState)
     }
 
     protected abstract fun initView(rootView: View, savedInstanceState: Bundle?)
