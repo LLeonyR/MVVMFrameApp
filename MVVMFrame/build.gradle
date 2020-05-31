@@ -52,7 +52,7 @@ dependencies {
         transitive = false
     }
     implementation rootProject.ext.thirdLib["glide"]
-    annotationProcessor rootProject.ext.thirdLib["glideannotations"]
+    kapt rootProject.ext.thirdLib["glideannotations"]
     api rootProject.ext.thirdLib["gson"]
     api(rootProject.ext.thirdLib["converter-gson"]){
         transitive = false

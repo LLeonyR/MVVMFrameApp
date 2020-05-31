@@ -155,9 +155,15 @@ class Common : AbBindActivity<LViewModel, CommonBinding>() {
         }
 
         fun startForResult(fragment: Fragment, type: Type, requestCode: Int) {
-            val intent = Intent(fragment.getContext(), Common::class.java)
+            val intent = Intent(fragment.context, Common::class.java)
             intent.putExtra(KEY_TYPE, type)
             fragment.startActivityForResult(intent, requestCode)
+        }
+
+        fun startForResult(fragment: Fragment, target: Fragment, type: Type, requestCode: Int) {
+            val intent = Intent(fragment.context, Common::class.java)
+            intent.putExtra(KEY_TYPE, type)
+            fragment.startActivity(intent)
         }
 
         fun startForResult(c: FragmentActivity, type: Type, requestCode: Int) {
