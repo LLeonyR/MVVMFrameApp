@@ -24,8 +24,21 @@ open class LRepViewModel(ctx: Context) : LViewModel(ctx) {
         return data
     }*/
 
-    suspend fun <T : Any> safeApiCall(call: suspend () -> Response<T>, errorMessage: String = "请求失败"): Result<T> {
-        return safeApiResult(call, errorMessage)
+    suspend fun <T : Any> safeApiCall(
+        call: suspend () -> Response<T>,
+        errorMessage: Any = "请求失败"
+    ): Result<T> {
+        return when (errorMessage) {
+            is String -> {
+                safeApiResult(call, errorMessage)
+            }
+            is Int -> {
+                safeApiCall(call, getContext()?.getString(errorMessage) ?: "请求失败")
+            }
+            else -> {
+                safeApiCall(call, errorMessage.toString())
+            }
+        }
     }
 
     private suspend fun <T : Any> safeApiResult(
@@ -42,7 +55,7 @@ open class LRepViewModel(ctx: Context) : LViewModel(ctx) {
             }
         } catch (e: IOException) {
             LogUtil.e(e.message)
-            return Result(-1, error = e.message?: "$errorMessage")
+            return Result(-1, error = e.message ?: "$errorMessage")
         }
 
         return Result(-1, error = "$errorMessage")
