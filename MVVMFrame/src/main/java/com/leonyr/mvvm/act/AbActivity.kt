@@ -43,7 +43,7 @@ abstract class AbActivity<VM : LViewModel> : AppCompatActivity() {
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         super.onCreate(savedInstanceState)
         mCtx = this
-        dialogLoading = NetLoading(mCtx!!)
+        dialogLoading = NetLoading(mCtx)
         lifecycle.addObserver(ActivityObserver())
 
         setContentView(layoutResId)

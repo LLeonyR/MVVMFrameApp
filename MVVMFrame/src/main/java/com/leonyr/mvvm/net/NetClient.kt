@@ -5,12 +5,12 @@ import com.google.gson.GsonBuilder
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.leonyr.lib.Utils
 import com.leonyr.mvvm.BaseApplication
+import com.leonyr.mvvm.net.converter.GsonConverterFactory
 import okhttp3.Cache
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import java.io.File
 import java.util.concurrent.TimeUnit
 
@@ -60,10 +60,8 @@ class NetClient<T> private constructor() {
                 httpClientBuilder.addInterceptor(interceptor)
             }
 
-            if (interceptors!!.isNotEmpty()) {
-                interceptors!!.forEach {
-                    httpClientBuilder.addInterceptor(it)
-                }
+            interceptors.forEach {
+                httpClientBuilder.addInterceptor(it)
             }
 
             httpClient = httpClientBuilder.build()

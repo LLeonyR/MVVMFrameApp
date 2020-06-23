@@ -44,7 +44,7 @@ abstract class AbBindActivity<VM : LViewModel, T : ViewDataBinding> : AppCompatA
         lifecycle.addObserver(ActivityObserver())
 
         mCtx = this
-        dialogLoading = NetLoading(mCtx!!)
+        dialogLoading = NetLoading(mCtx)
         binding = DataBindingUtil.setContentView(this, layoutResId)
         TAG = javaClass.simpleName
 

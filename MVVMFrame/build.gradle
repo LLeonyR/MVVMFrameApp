@@ -54,9 +54,9 @@ dependencies {
     implementation rootProject.ext.thirdLib["glide"]
     kapt rootProject.ext.thirdLib["glideannotations"]
     api rootProject.ext.thirdLib["gson"]
-    api(rootProject.ext.thirdLib["converter-gson"]){
+    /*api(rootProject.ext.thirdLib["converter-gson"]){
         transitive = false
-    }
+    }*/
     api rootProject.ext.thirdLib["loggingInterceptor"]
 
     api(rootProject.ext.leonyr["utils"]) {
