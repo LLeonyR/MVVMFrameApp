@@ -51,13 +51,14 @@ final class GsonResponseBodyConverter<T> implements Converter<ResponseBody, T> {
             Reader reader = new InputStreamReader(inputStream, charset);
             JsonReader jsonReader = gson.newJsonReader(reader);
             T result = adapter.read(jsonReader);
+//            throw new NullPointerException("test");
             return result;
         } catch (JsonParseException e) {
             e.printStackTrace();
             throw e;
         } catch (Exception e){
             e.printStackTrace();
-            throw new JsonParseException("JSON PARSE ERROR: ", e.getCause());
+            throw new JsonParseException("JSON PARSE ERROR: ", new Throwable(response));
         }
         finally {
             value.close();
