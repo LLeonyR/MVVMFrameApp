@@ -35,6 +35,9 @@ final class GsonResponseBodyConverter<T> implements Converter<ResponseBody, T> {
     @Override
     public T convert(ResponseBody value) throws IOException {
         String response = value.string();
+        if (response.isEmpty()){
+            response = "{}";
+        }
         try {
             JSONObject json = new JSONObject(response);
             String data = json.optString("data");
