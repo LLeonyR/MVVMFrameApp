@@ -47,6 +47,7 @@ ext {
             "banner"             : "com.youth.banner:banner:2.0.11",
             "bluetoothKit"       : "com.inuker.bluetooth:library:1.4.0",
             "bugly"              : "com.tencent.bugly:crashreport:3.1.0",
+            "bugly-up"           : "com.tencent.bugly:crashreport_upgrade:1.4.2",
             "converter-gson"     : "com.squareup.retrofit2:converter-gson:2.7.2",
             "converter-scalars"  : "com.squareup.retrofit2:converter-scalars:2.7.2",
             "converter-xml"      : "com.squareup.retrofit2:converter-simplexml:2.7.2",
