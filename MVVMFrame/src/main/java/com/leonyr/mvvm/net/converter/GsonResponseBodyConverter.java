@@ -35,19 +35,17 @@ final class GsonResponseBodyConverter<T> implements Converter<ResponseBody, T> {
     @Override
     public T convert(ResponseBody value) throws IOException {
         String response = value.string();
-        if (response.isEmpty()){
+        if (response.isEmpty()) {
             response = "{}";
         }
         try {
             JSONObject json = new JSONObject(response);
             String data = json.optString("data");
-            if (data != null && data.length() < 6){
-                if (data.equals("null") || data.equals("{}") || data.equals("[]") || data.equals("")){
+            if (data != null && data.length() < 6) {
+                if (data.equals("null") || data.equals("{}") || data.equals("[]") || data.equals("")) {
                     json.remove("data");
                 }
             }
-            LogUtil.e("Request Body: " + response.length());
-            LogUtil.e("Request json: " + json.toString());
             MediaType contentType = value.contentType();
             Charset charset = contentType != null ? contentType.charset(UTF_8) : UTF_8;
             InputStream inputStream = new ByteArrayInputStream(json.toString().getBytes());
@@ -59,11 +57,10 @@ final class GsonResponseBodyConverter<T> implements Converter<ResponseBody, T> {
         } catch (JsonParseException e) {
             e.printStackTrace();
             throw e;
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             throw new JsonParseException("JSON PARSE ERROR: ", new Throwable(response));
-        }
-        finally {
+        } finally {
             value.close();
         }
     }
