@@ -2,12 +2,11 @@ package com.leonyr.mvvm.frag
 
 import android.app.Dialog
 import android.content.Context
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.DisplayMetrics
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.view.WindowManager
+import android.view.*
 import androidx.annotation.LayoutRes
 import androidx.annotation.NonNull
 import androidx.annotation.Nullable
@@ -79,6 +78,7 @@ abstract class AbBindDialogFragment<VM : LViewModel, B : ViewDataBinding> : Dial
         })
     }
 
+
     override fun onResume() {
         val window = dialog.window
         if (window != null) {
@@ -88,6 +88,12 @@ abstract class AbBindDialogFragment<VM : LViewModel, B : ViewDataBinding> : Dial
                 (dm.widthPixels * WIDTH_RATIO).toInt(),
                 WindowManager.LayoutParams.WRAP_CONTENT
             )
+            val params = window.attributes
+            params.width = (dm.widthPixels * WIDTH_RATIO).toInt()
+            params.gravity = Gravity.CENTER
+            params.height = WindowManager.LayoutParams.WRAP_CONTENT
+            window.attributes = params
+            window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         }
         super.onResume()
     }

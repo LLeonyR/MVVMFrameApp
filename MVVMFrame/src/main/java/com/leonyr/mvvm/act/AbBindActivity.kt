@@ -2,6 +2,7 @@ package com.leonyr.mvvm.act
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.Window
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
