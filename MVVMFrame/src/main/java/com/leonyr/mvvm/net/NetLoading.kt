@@ -42,16 +42,16 @@ class NetLoading {
         return v
     }
 
-    private fun createDialog(context: Context?, v: View): Dialog {
+    private fun createDialog(context: Context, v: View): Dialog {
         val dialog = Dialog(context, R.style.net_dialog_default)
         dialog.setCancelable(cancel)
         dialog.setContentView(v)
         val dialogWindow = dialog.window
-        val lp = dialogWindow.attributes
+        val lp = dialogWindow?.attributes
         //        dialogWindow.setGravity(Gravity.LEFT | Gravity.TOP);
         if (setWidth() > 0) {
-            lp.width = setWidth()
-            dialogWindow.attributes = lp
+            lp?.width = setWidth()
+            dialogWindow?.attributes = lp
         }
         return dialog
     }
