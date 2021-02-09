@@ -47,11 +47,14 @@ class NetLoading {
         dialog.setCancelable(cancel)
         dialog.setContentView(v)
         val dialogWindow = dialog.window
-        val lp = dialogWindow?.attributes
-        //        dialogWindow.setGravity(Gravity.LEFT | Gravity.TOP);
-        if (setWidth() > 0) {
-            lp?.width = setWidth()
-            dialogWindow?.attributes = lp
+
+        dialogWindow?.let {
+            val lp = it.attributes
+            //        dialogWindow.setGravity(Gravity.LEFT | Gravity.TOP);
+            if (setWidth() > 0) {
+                lp.width = setWidth()
+                it.attributes = lp
+            }
         }
         return dialog
     }

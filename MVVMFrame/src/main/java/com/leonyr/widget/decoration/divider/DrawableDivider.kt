@@ -18,6 +18,5 @@ class DrawableDivider(private val mDrawable: Drawable, private val mUseWidth: Bo
             )
             mDrawable.draw(it)
         }
-
     }
 }

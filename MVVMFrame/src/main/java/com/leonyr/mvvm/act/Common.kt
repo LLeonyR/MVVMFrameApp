@@ -135,6 +135,7 @@ class Common : AbBindActivity<LViewModel, CommonBinding>() {
 
         fun start(context: Context, type: Type) {
             val intent = Intent(context, Common::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             intent.putExtra(KEY_TYPE, type)
             context.startActivity(intent)
         }
